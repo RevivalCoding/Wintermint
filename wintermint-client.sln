@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wintermint-client", "wintermint-client.csproj", "{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

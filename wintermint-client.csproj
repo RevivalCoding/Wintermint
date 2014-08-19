@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{4B36B44A-79F5-4B8B-9592-8143B7C38EEC}</ProjectGuid>
+    <SchemaVersion>2</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>wintermint-client</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="agsxmpp">
+      <HintPath>..\Wintermint DLL\agsxmpp.dll</HintPath>
+    </Reference>
+    <Reference Include="chat">
+      <HintPath>..\Wintermint DLL\chat.dll</HintPath>
+    </Reference>
+    <Reference Include="file-db">
+      <HintPath>..\Wintermint DLL\file-db.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.windowsapicodepack.shell">
+      <HintPath>..\Wintermint DLL\microsoft.windowsapicodepack.shell.dll</HintPath>
+    </Reference>
+    <Reference Include="newtonsoft.json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Wintermint DLL\newtonsoft.json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="system.net.http.formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Wintermint DLL\system.net.http.formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="websocketex">
+      <HintPath>..\Wintermint DLL\websocketex.dll</HintPath>
+    </Reference>
+    <Reference Include="wintermint-data">
+      <HintPath>..\Wintermint DLL\wintermint-data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="rtmp-sharp">
+      <HintPath>..\Wintermint DLL\rtmp-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="micro-api2">
+      <HintPath>..\Wintermint DLL\micro-api2.dll</HintPath>
+    </Reference>
+    <Reference Include="browser">
+      <HintPath>..\Wintermint DLL\browser.dll</HintPath>
+    </Reference>
+    <Reference Include="riot-dto">
+      <HintPath>..\Wintermint DLL\riot-dto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="complete">
+      <HintPath>..\Wintermint DLL\complete.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="wintermint-data-helper">
+      <HintPath>..\Wintermint DLL\wintermint-data-helper.dll</HintPath>
+    </Reference>
+    <Reference Include="riot-sharp">
+      <HintPath>..\Wintermint DLL\riot-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="astral-client">
+      <HintPath>..\Wintermint DLL\astral-client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="riot-spectate">
+      <HintPath>..\Wintermint DLL\riot-spectate.dll</HintPath>
+    </Reference>
+    <Reference Include="morelinq">
+      <HintPath>..\Wintermint DLL\morelinq.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.windowsapicodepack">
+      <HintPath>..\Wintermint DLL\microsoft.windowsapicodepack.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="astral">
+      <HintPath>..\Wintermint DLL\astral.dll</HintPath>
+    </Reference>
+    <Reference Include="xilium.cefglue">
+      <HintPath>..\Wintermint DLL\xilium.cefglue.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppContainer.cs" />
+    <Compile Include="ClientConstants.cs" />
+    <Compile Include="Daemons\RiotUpdateDaemon.cs" />
+    <Compile Include="Daemons\WintermintUpdateDaemon.cs" />
+    <Compile Include="Data\ChampionNameData.cs" />
+    <Compile Include="Data\ChatStateTransformData.cs" />
+    <Compile Include="Data\Extensions\DataHelperExtensions.cs" />
+    <Compile Include="Data\GameData.cs" />
+    <Compile Include="Data\LaunchData.cs" />
+    <Compile Include="Data\PracticeGameData.cs" />
+    <Compile Include="Data\ReplayData.cs" />
+    <Compile Include="Data\RiotEndpointData.cs" />
+    <Compile Include="Data\RtmpSharpData.cs" />
+    <Compile Include="Data\Rune.cs" />
+    <Compile Include="Data\RuneData.cs" />
+    <Compile Include="Data\RuneType.cs" />
+    <Compile Include="GlobalExtensions.cs" />
+    <Compile Include="Instances.cs" />
+    <Compile Include="JsApi\ApiHost\JsonResult.cs" />
+    <Compile Include="JsApi\ApiHost\WintermintApiHost.cs" />
+    <Compile Include="JsApi\CacheHelper.cs" />
+    <Compile Include="JsApi\GameJsApiService.cs" />
+    <Compile Include="JsApi\Helpers\InventoryHelper.cs" />
+    <Compile Include="JsApi\Helpers\JsApiException.cs" />
+    <Compile Include="JsApi\Hybrid\MatchService.cs" />
+    <Compile Include="JsApi\Hybrid\XmppLobbyService.cs" />
+    <Compile Include="JsApi\JsApiService.cs" />
+    <Compile Include="JsApi\Notification\AccountBagNotificationService.cs" />
+    <Compile Include="JsApi\Notification\ContactsNotificationService.cs" />
+    <Compile Include="JsApi\Notification\GameMaestroService.cs" />
+    <Compile Include="JsApi\Notification\GameNotificationService.cs" />
+    <Compile Include="JsApi\Notification\QueueNotificationService.cs" />
+    <Compile Include="JsApi\Notification\RiotUpdateNotificationService.cs" />
+    <Compile Include="JsApi\Notification\RiotUpdateService.cs" />
+    <Compile Include="JsApi\RiotJsTransformer.cs" />
+    <Compile Include="JsApi\Standard\AccountSetupService.cs" />
+    <Compile Include="JsApi\Standard\ChatService.cs" />
+    <Compile Include="JsApi\Standard\ChatStatusService.cs" />
+    <Compile Include="JsApi\Standard\CupcakeService.cs" />
+    <Compile Include="JsApi\Standard\CustomGameService.cs" />
+    <Compile Include="JsApi\Standard\GameService.cs" />
+    <Compile Include="JsApi\Standard\HeroSelectService.cs" />
+    <Compile Include="JsApi\Standard\HostService.cs" />
+    <Compile Include="JsApi\Standard\InventoryService.cs" />
+    <Compile Include="JsApi\Standard\MatchmakingService.cs" />
+    <Compile Include="JsApi\Standard\MessyService.cs" />
+    <Compile Include="JsApi\Standard\ProfileService.cs" />
+    <Compile Include="JsApi\Standard\RealmInstallationService.cs" />
+    <Compile Include="JsApi\Standard\RiotService.cs" />
+    <Compile Include="JsApi\Standard\Riot\AccountService.cs" />
+    <Compile Include="JsApi\Standard\Riot\DownloadsService.cs" />
+    <Compile Include="JsApi\Standard\Riot\RealmService.cs" />
+    <Compile Include="JsApi\Standard\SettingsService.cs" />
+    <Compile Include="JsApi\Standard\SpectateService.cs" />
+    <Compile Include="JsApi\Standard\StoreService.cs" />
+    <Compile Include="JsApi\Standard\SummonerService.cs" />
+    <Compile Include="JsApi\Standard\WintermintService.cs" />
+    <Compile Include="JsApi\WintermintJsApiServiceHelper.cs" />
+    <Compile Include="LittleClient.cs" />
+    <Compile Include="Native\WindowFlasher.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>false</AutoGen>
+      <DesignTimeSharedInput>false</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Riot\AccountNotFoundException.cs" />
+    <Compile Include="Riot\ChatHost.cs" />
+    <Compile Include="Riot\ConnectionState.cs" />
+    <Compile Include="Riot\InvocationResultEventArgs.cs" />
+    <Compile Include="Riot\ReleasePackage.cs" />
+    <Compile Include="Riot\RiotAccount.cs" />
+    <Compile Include="Riot\RiotAccountBag.cs" />
+    <Compile Include="Riot\RiotAccountPreference.cs" />
+    <Compile Include="Riot\StateChangedEventArgs.cs" />
+    <Compile Include="Riot\UberChatClient.cs" />
+    <Compile Include="RollingList_T_.cs" />
+    <Compile Include="Util\AppUserModelId.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
