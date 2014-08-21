@@ -253,7 +253,7 @@ namespace WintermintClient.Riot
             this.rtmp = new RiotRtmpClient(RtmpSharpData.SerializationContext, config.Endpoints.Rtmp.Uri, config.Username, config.Password, config.Endpoints.Rtmp.AuthDomain, config.Endpoints.Rtmp.ServiceEndpoint, config.Endpoints.Rtmp.Versions, config.Endpoints.Rtmp.LoginQueueUri);
             this.rtmp.Disconnected += new EventHandler((object sender, EventArgs args) => this.OnDisconnected(args));
             this.rtmp.LoginQueuePositionChanged += new EventHandler<int>((object sender, int i) => this.OnLoginQueuePositionChanged(i));
-            this.rtmp.MessageReceived += new EventHandler<MessageReceivedEventArgs>((object sender, MessageReceivedEventArgs args) => this.OnMessageReceived(args));
+            this.rtmp.MessageReceived += new EventHandler<RtmpSharp.Messaging.MessageReceivedEventArgs>((object sender, RtmpSharp.Messaging.MessageReceivedEventArgs args) => this.OnMessageReceived(args));
             this.chat = ChatHost.Create(config, this);
             this.chat.Disconnected += new EventHandler(this.OnChatDisconnected);
             this.reconnectAttempts = new RollingList<DateTime>(15);
@@ -409,15 +409,15 @@ namespace WintermintClient.Riot
 
         public async Task<T> InvokeAsync<T>(string destination, string method, object[] arguments)
         {
-            RiotAccount.<InvokeAsync>d__21<T> variable = new RiotAccount.<InvokeAsync>d__21<T>();
-            variable.<>4__this = this;
+            RiotAccount.<InvokeAsync<T>> variable = new RiotAccount.<InvokeAsync<T>>();
+            variable.this = this;
             variable.destination = destination;
             variable.method = method;
             variable.arguments = arguments;
-            variable.<>t__builder = AsyncTaskMethodBuilder<T>.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<RiotAccount.<InvokeAsync>d__21<T>>(ref variable);
-            return variable.<>t__builder.Task;
+            variable.builder = AsyncTaskMethodBuilder<T>.Create();
+            variable.state = -1;
+            variable.builder.Start<RiotAccount.<InvokeAsync<T>>>(ref variable);
+            return variable.builder.Task;
         }
 
         public Task<T> InvokeCachedAsync<T>(string destination, string method, TimeSpan life)

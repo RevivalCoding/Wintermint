@@ -39,13 +39,14 @@ namespace WintermintClient.JsApi.Standard
         [MicroApiMethod("legacy.open")]
         public async Task OpenStore(dynamic args)
         {
-            StoreService.<OpenStore>d__f variable = new StoreService.<OpenStore>d__f();
-            variable.<>4__this = this;
+            var var;
+            StoreService.<OpenStore>(var) variable = new StoreService.<OpenStore>();
+            variable.this = this;
             variable.args = args;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<StoreService.<OpenStore>d__f>(ref variable);
-            return variable.<>t__builder.Task;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<StoreService.<OpenStore>>(ref variable);
+            return variable.builder.Task;
         }
 
         [MicroApiMethod("acquire")]

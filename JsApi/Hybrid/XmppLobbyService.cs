@@ -60,17 +60,17 @@ namespace WintermintClient.JsApi.Hybrid
             this.lobbySyncObject = new object();
             JsApiService.AccountBag.AccountAdded += new EventHandler<RiotAccount>((object sender, RiotAccount account) =>
             {
-                account.Chat.MailReceived += new EventHandler<MessageReceivedEventArgs>(this.OnMailReceived);
-                account.Chat.MessageReceived += new EventHandler<MessageReceivedEventArgs>(this.OnMessageReceived);
-                account.MessageReceived += new EventHandler<MessageReceivedEventArgs>(this.OnFlexMessageReceived);
+                account.Chat.MailReceived += new EventHandler<Chat.MessageReceivedEventArgs>(this.OnMailReceived);
+                account.Chat.MessageReceived += new EventHandler<Chat.MessageReceivedEventArgs>(this.OnMessageReceived);
+                account.MessageReceived += new EventHandler<RtmpSharp.Messaging.MessageReceivedEventArgs>(this.OnFlexMessageReceived);
                 account.InvocationResult += new EventHandler<InvocationResultEventArgs>(this.OnInvocationResult);
                 account.StateChanged += new EventHandler<StateChangedEventArgs>(this.OnAccountStateChanged);
             });
             JsApiService.AccountBag.AccountRemoved += new EventHandler<RiotAccount>((object sender, RiotAccount account) =>
             {
-                account.Chat.MailReceived -= new EventHandler<MessageReceivedEventArgs>(this.OnMailReceived);
-                account.Chat.MessageReceived -= new EventHandler<MessageReceivedEventArgs>(this.OnMessageReceived);
-                account.MessageReceived -= new EventHandler<MessageReceivedEventArgs>(this.OnFlexMessageReceived);
+                account.Chat.MailReceived -= new EventHandler<Chat.MessageReceivedEventArgs>(this.OnMailReceived);
+                account.Chat.MessageReceived -= new EventHandler<Chat.MessageReceivedEventArgs>(this.OnMessageReceived);
+                account.MessageReceived -= new EventHandler<RtmpSharp.Messaging.MessageReceivedEventArgs>(this.OnFlexMessageReceived);
                 account.InvocationResult -= new EventHandler<InvocationResultEventArgs>(this.OnInvocationResult);
                 account.StateChanged -= new EventHandler<StateChangedEventArgs>(this.OnAccountStateChanged);
             });
@@ -150,9 +150,16 @@ namespace WintermintClient.JsApi.Hybrid
             this.NotifyAll();
         }
 
-        private void CreateLobby(int queueId)
+        private async void CreateLobby(int queueId)
         {
-            this.Create(new { queueId = queueId, role = null, inviteId = null });
+            await this.Create(new { queueId = queueId, inviteId = CreateInviteId() });
+        }
+
+        private string CreateInviteId()
+        {
+            Random rnd = new Random();
+            return String.Format("INVITE", rnd.Next(9), rnd.Next(9), rnd.Next(9), rnd.Next(9), rnd.Next(9));
+            
         }
 
         private static XmppLobbyService.InvitationPassbackData DecodePassbackString(string str)
@@ -394,7 +401,7 @@ namespace WintermintClient.JsApi.Hybrid
             }
         }
 
-        private void OnFlexMessageReceived(object sender, MessageReceivedEventArgs e)
+        private void OnFlexMessageReceived(object sender, RtmpSharp.Messaging.MessageReceivedEventArgs e)
         {
             this.OnData(sender as RiotAccount, e.Body);
         }
@@ -404,12 +411,12 @@ namespace WintermintClient.JsApi.Hybrid
             this.OnData(sender as RiotAccount, args.Result);
         }
 
-        private void OnMailReceived(object sender, MessageReceivedEventArgs args)
+        private void OnMailReceived(object sender, Chat.MessageReceivedEventArgs args)
         {
             this.ProcessMail(sender, args);
         }
 
-        private void OnMessageReceived(object sender, MessageReceivedEventArgs args)
+        private void OnMessageReceived(object sender, Chat.MessageReceivedEventArgs args)
         {
             try
             {
@@ -420,7 +427,7 @@ namespace WintermintClient.JsApi.Hybrid
             }
         }
 
-        private async Task ProcessMail(object sender, MessageReceivedEventArgs args)
+        private async Task ProcessMail(object sender, Chat.MessageReceivedEventArgs args)
         {
             string str;
             object obj = null;
@@ -656,7 +663,7 @@ namespace WintermintClient.JsApi.Hybrid
             }
         }
 
-        private void ProcessMessage(object sender, MessageReceivedEventArgs args)
+        private void ProcessMessage(object sender, Chat.MessageReceivedEventArgs args)
         {
             if (args.MessageId == null || !args.MessageId.StartsWith("hm_"))
             {
@@ -787,7 +794,7 @@ namespace WintermintClient.JsApi.Hybrid
             {
                 this.invitations.Clear();
                 foreach (var variable1 in 
-                    from x in (IEnumerable<<>f__AnonymousType10<string, XmppLobbyService.LobbyMember>>)variable
+                    from x in (IEnumerable<AnonymousType10<string, XmppLobbyService.LobbyMember>>)variable
                     where x.Status == "PENDING"
                     select x)
                 {
@@ -795,7 +802,7 @@ namespace WintermintClient.JsApi.Hybrid
                 }
                 this.members.Clear();
                 foreach (var variable2 in 
-                    from x in (IEnumerable<<>f__AnonymousType10<string, XmppLobbyService.LobbyMember>>)variable
+                    from x in (IEnumerable<AnonymousType10<string, XmppLobbyService.LobbyMember>>)variable
                     where x.Status == "ACCEPTED"
                     select x)
                 {

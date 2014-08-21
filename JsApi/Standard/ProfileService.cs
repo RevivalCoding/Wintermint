@@ -135,39 +135,40 @@ namespace WintermintClient.JsApi.Standard
                 from league in summonerLeagues
                 select new { league = league, entries = league.Entries };
             var collection = 
-                from <>h__TransparentIdentifier6 in variable
-                select new { <>h__TransparentIdentifier6 = <>h__TransparentIdentifier6, me = <>h__TransparentIdentifier6.entries.FirstOrDefault<LeagueItemDTO>((LeagueItemDTO x) => x.PlayerOrTeamName == <>h__TransparentIdentifier6.league.RequestorsName) };
+                from TransparentIdentifier6 in variable
+                select new { TransparentIdentifier6 = TransparentIdentifier6, me = TransparentIdentifier6.entries.FirstOrDefault<LeagueItemDTO>((LeagueItemDTO x) => x.PlayerOrTeamName == TransparentIdentifier6.league.RequestorsName) };
             IEnumerable<ProfileService.JsLeague> jsLeagues = collection.Select((argument1) => {
                 Func<LeagueItemDTO, int> func = null;
                 return new ProfileService.JsLeague()
                 {
-                    Id = string.Format("/{0}/{1}/", argument1.<>h__TransparentIdentifier6.league.Queue, argument1.<>h__TransparentIdentifier6.league.RequestorsName),
-                    Name = argument1.<>h__TransparentIdentifier6.league.RequestorsName,
-                    Queue = argument1.<>h__TransparentIdentifier6.league.Queue,
-                    League = argument1.<>h__TransparentIdentifier6.league.Tier.ToProperCase(),
-                    LeagueName = argument1.<>h__TransparentIdentifier6.league.Name,
-                    Division = argument1.<>h__TransparentIdentifier6.league.RequestorsRank,
+                    Id = string.Format("/{0}/{1}/", argument1.TransparentIdentifier6.league.Queue, argument1.TransparentIdentifier6.league.RequestorsName),
+                    Name = argument1.TransparentIdentifier6.league.RequestorsName,
+                    Queue = argument1.TransparentIdentifier6.league.Queue,
+                    League = argument1.TransparentIdentifier6.league.Tier.ToProperCase(),
+                    LeagueName = argument1.TransparentIdentifier6.league.Name,
+                    Division = argument1.TransparentIdentifier6.league.RequestorsRank,
                     Divisions = (
-                        from entry in argument1.<>h__TransparentIdentifier6.league.Entries
-                        group entry by entry.Rank).Select<IGrouping<string, LeagueItemDTO>, ProfileService.JsLeagueDivision>((IGrouping<string, LeagueItemDTO> division) => {
-                        ProfileService.JsLeagueDivision jsLeagueDivision = new ProfileService.JsLeagueDivision()
+                        from entry in argument1.TransparentIdentifier6.league.Entries
+                        group entry by entry.Rank).Select<IGrouping<string, LeagueItemDTO>, ProfileService.JsLeagueDivision>((IGrouping<string, LeagueItemDTO> division) =>
                         {
-                            LeagueName = argument1.<>h__TransparentIdentifier6.league.Name,
-                            League = argument1.<>h__TransparentIdentifier6.league.Tier.ToProperCase(),
-                            Division = division.Key
-                        };
-                        ProfileService.JsLeagueDivision jsLeagueDivision1 = jsLeagueDivision;
-                        IGrouping<string, LeagueItemDTO> strs = division;
-                        if (func == null)
-                        {
-                            func = (LeagueItemDTO x) => x.LeaguePoints;
-                        }
-                        jsLeagueDivision1.Members = strs.OrderByDescending<LeagueItemDTO, int>(func).Select((LeagueItemDTO entry, int i) => new { Id = entry.PlayerOrTeamId, Position = i + 1, Name = entry.PlayerOrTeamName, Wins = entry.Wins, Losses = entry.Losses, Points = entry.LeaguePoints, Requestor = entry.PlayerOrTeamName == argument1.<>h__TransparentIdentifier6.league.RequestorsName });
-                        return jsLeagueDivision;
-                    }),
+                            ProfileService.JsLeagueDivision jsLeagueDivision = new ProfileService.JsLeagueDivision()
+                            {
+                                LeagueName = argument1.TransparentIdentifier6.league.Name,
+                                League = argument1.TransparentIdentifier6.league.Tier.ToProperCase(),
+                                Division = division.Key
+                            };
+                            ProfileService.JsLeagueDivision jsLeagueDivision1 = jsLeagueDivision;
+                            IGrouping<string, LeagueItemDTO> strs = division;
+                            if (func == null)
+                            {
+                                func = (LeagueItemDTO x) => x.LeaguePoints;
+                            }
+                            jsLeagueDivision1.Members = strs.OrderByDescending<LeagueItemDTO, int>(func).Select((LeagueItemDTO entry, int i) => new { Id = entry.PlayerOrTeamId, Position = i + 1, Name = entry.PlayerOrTeamName, Wins = entry.Wins, Losses = entry.Losses, Points = entry.LeaguePoints, Requestor = entry.PlayerOrTeamName == argument1.TransparentIdentifier6.league.RequestorsName });
+                            return jsLeagueDivision;
+                        }),
                     Points = argument1.me.LeaguePoints,
                     Wins = argument1.me.Wins,
-                    Losses = argument1.me.Losses
+                    Losses = argument1.me.Losses,
                 };
             });
             return jsLeagues.ToArray<ProfileService.JsLeague>();
@@ -208,6 +209,7 @@ namespace WintermintClient.JsApi.Standard
             return InventoryHelper.GetMasterySetups(str, (string)args.summonerName);
         }
 
+        // 
         private async Task<object> GetMatchHistory(string realm, long accountId)
         {
             RiotAccount riotAccount = JsApiService.AccountBag.Get(realm);
@@ -219,18 +221,37 @@ namespace WintermintClient.JsApi.Standard
                 orderby game.CreateDate descending
                 select new { game = game, map = maps.FirstOrDefault<GameService.JsGameMap>((GameService.JsGameMap m) => (double)m.Id == game.GameMapId) };
             var variable = 
-                from <>h__TransparentIdentifier44 in createDate
-                select new { <>h__TransparentIdentifier44 = <>h__TransparentIdentifier44, stats = <>h__TransparentIdentifier44.game.Statistics.ToDictionary<RawStat, string, double>((RawStat x) => x.StatType, (RawStat x) => x.Value) };
+                from TransparentIdentifier44 in createDate
+                select new { TransparentIdentifier44 = TransparentIdentifier44, stats = TransparentIdentifier44.game.Statistics.ToDictionary<RawStat, string, double>((RawStat x) => x.StatType, (RawStat x) => x.Value) };
             var collection = 
-                from <>h__TransparentIdentifier45 in variable
-                select new { <>h__TransparentIdentifier45 = <>h__TransparentIdentifier45, win = JsApiService.GetGameStat(<>h__TransparentIdentifier45.stats, "WIN") != 0 };
+                from TransparentIdentifier45 in variable
+                select new { TransparentIdentifier45 = TransparentIdentifier45, win = JsApiService.GetGameStat(TransparentIdentifier45.stats, "WIN") != 0 };
             var variable1 = 
-                from <>h__TransparentIdentifier46 in collection
-                select new { <>h__TransparentIdentifier46 = <>h__TransparentIdentifier46, lose = JsApiService.GetGameStat(<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "LOSE") != 0 };
+                from TransparentIdentifier46 in collection
+                select new { TransparentIdentifier46 = TransparentIdentifier46, lose = JsApiService.GetGameStat(TransparentIdentifier46.TransparentIdentifier45.stats, "LOSE") != 0 };
+            //Pls Astral why did you crypt Wintermint
             object obj = 
-                from <>h__TransparentIdentifier47 in variable1
-                let outcome = (<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.win ? "win" : (<>h__TransparentIdentifier47.lose ? "loss" : "afk"))
-                select new { RealmId = realm, MatchId = <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.GameId, MapId = (<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.map != null ? <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.map.Id : -1), Queue = <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.QueueType, ChampionId = <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.ChampionId, Started = <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.CreateDate, Duration = 0, Ip = <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.IpEarned, Outcome = outcome, Kills = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "CHAMPIONS_KILLED"), Deaths = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "NUM_DEATHS"), Assists = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ASSISTS"), MultiKill = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "LARGEST_MULTI_KILL"), Gold = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "GOLD_EARNED"), Creeps = JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "MINIONS_KILLED") + JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "NEUTRAL_MINIONS_KILLED"), Spells = new double[] { <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.Spell1, <>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.<>h__TransparentIdentifier44.game.Spell2 }, Items = new double[] { JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM0"), JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM1"), JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM2"), JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM3"), JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM4"), JsApiService.GetGameStat(<>h__TransparentIdentifier47.<>h__TransparentIdentifier46.<>h__TransparentIdentifier45.stats, "ITEM5") } };
+                from TransparentIdentifier47 in variable1
+                let outcome = (TransparentIdentifier47.TransparentIdentifier46.win ? "win" : (TransparentIdentifier47.lose ? "loss" : "afk"))
+                select new { RealmId = realm, MatchId = TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.GameId, 
+                    MapId = (TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.map != null ? TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.map.Id : -1), 
+                    Queue = TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.QueueType, 
+                    ChampionId = TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.ChampionId, Started = TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.CreateDate, Duration = 0, 
+                    Ip = TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.IpEarned, Outcome = outcome, 
+                    Kills = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "CHAMPIONS_KILLED"), 
+                    Deaths = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "NUM_DEATHS"), 
+                    Assists = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ASSISTS"), 
+                    MultiKill = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "LARGEST_MULTI_KILL"), 
+                    Gold = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "GOLD_EARNED"), 
+                    Creeps = JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "MINIONS_KILLED") +                     JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "NEUTRAL_MINIONS_KILLED"), 
+                    Spells = new double[] { TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.Spell1, 
+                        TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.TransparentIdentifier44.game.Spell2 }, 
+                    Items = new double[] { JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM0"), 
+                        JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM1"), 
+                        JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM2"), 
+                        JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM3"), 
+                        JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM4"), 
+                        JsApiService.GetGameStat(TransparentIdentifier47.TransparentIdentifier46.TransparentIdentifier45.stats, "ITEM5") } };
             return obj;
         }
 
@@ -286,11 +307,13 @@ namespace WintermintClient.JsApi.Standard
             RiotAccount riotAccount = JsApiService.AccountBag.Get(realm);
             AllPublicSummonerDataDTO allPublicSummonerDataDTO = await riotAccount.InvokeCachedAsync<AllPublicSummonerDataDTO>("summonerService", "getAllPublicSummonerDataByAccount", accountId);
             BasePublicSummonerDTO summoner = allPublicSummonerDataDTO.Summoner;
+            
             var variable = new <>f__AnonymousType1a<int, string>[] { new { Season = 2, Tier = ProfileService.GetRatingTier(summoner.SeasonTwoTier) }, new { Season = 1, Tier = ProfileService.GetRatingTier(summoner.SeasonOneTier) } };
             return variable;
         }
 
-        private static async Task<object[]> GetRankedChampions(string realm, long accountId, string gameMode, string season)
+        //
+        private async static Task<object[]> GetRankedChampions(string realm, long accountId, string gameMode, string season)
         {
             RiotAccount riotAccount = JsApiService.AccountBag.Get(realm);
             object[] objArray = new object[] { accountId, gameMode, season };
@@ -303,27 +326,35 @@ namespace WintermintClient.JsApi.Standard
                 from championStatistic in championId
                 select new { championStatistic = championStatistic, championId = (int)championStatistic.Key };
             var collection = 
-                from <>h__TransparentIdentifier25 in variable
-                select new { <>h__TransparentIdentifier25 = <>h__TransparentIdentifier25, stats = <>h__TransparentIdentifier25.championStatistic.ToDictionary<AggregatedStat, string, double>((AggregatedStat x) => x.StatType, (AggregatedStat x) => x.Value) };
+                from TransparentIdentifier25 in variable
+                select new { TransparentIdentifier25 = TransparentIdentifier25, stats = TransparentIdentifier25.championStatistic.ToDictionary<AggregatedStat, string, double>((AggregatedStat x) => x.StatType, (AggregatedStat x) => x.Value) };
             var variable1 = 
-                from <>h__TransparentIdentifier26 in collection
-                select new { <>h__TransparentIdentifier26 = <>h__TransparentIdentifier26, games = JsApiService.GetGameStat(<>h__TransparentIdentifier26.stats, "TOTAL_SESSIONS_PLAYED") };
+                from TransparentIdentifier26 in collection
+                select new { TransparentIdentifier26 = TransparentIdentifier26, games = JsApiService.GetGameStat(TransparentIdentifier26.stats, "TOTAL_SESSIONS_PLAYED") };
             var collection1 = 
-                from <>h__TransparentIdentifier27 in variable1
-                select new { <>h__TransparentIdentifier27 = <>h__TransparentIdentifier27, lifetimeGold = JsApiService.GetGameStat(<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_GOLD_EARNED") };
+                from TransparentIdentifier27 in variable1
+                select new { TransparentIdentifier27 = TransparentIdentifier27, lifetimeGold = JsApiService.GetGameStat(TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_GOLD_EARNED") };
             var variable2 = 
-                from <>h__TransparentIdentifier28 in collection1
-                select new { <>h__TransparentIdentifier28 = <>h__TransparentIdentifier28, lifetimeCreeps = JsApiService.GetGameStat(<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_MINION_KILLS") + JsApiService.GetGameStat(<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_NEUTRAL_MINIONS_KILLED") };
+                from TransparentIdentifier28 in collection1
+                select new { TransparentIdentifier28 = TransparentIdentifier28, lifetimeCreeps = JsApiService.GetGameStat(TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_MINION_KILLS") + JsApiService.GetGameStat(TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_NEUTRAL_MINIONS_KILLED") };
             var collection2 = variable2.Where((argument4) => {
-                if (argument4.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games <= 0)
+                if (argument4.TransparentIdentifier28.TransparentIdentifier27.games <= 0)
                 {
                     return false;
                 }
-                return argument4.<>h__TransparentIdentifier28.lifetimeGold > 0;
+                return argument4.TransparentIdentifier28.lifetimeGold > 0;
             });
             var variable3 = 
-                from <>h__TransparentIdentifier29 in collection2
-                select new { ChampionId = <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.<>h__TransparentIdentifier25.championId, Games = <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games, Wins = JsApiService.GetGameStat(<>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_SESSIONS_WON"), Losses = JsApiService.GetGameStat(<>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_SESSIONS_LOST"), Kills = JsApiService.GetGameStat(<>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_CHAMPION_KILLS") / <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games, Deaths = JsApiService.GetGameStat(<>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_DEATHS_PER_SESSION") / <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games, Assists = JsApiService.GetGameStat(<>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.<>h__TransparentIdentifier26.stats, "TOTAL_ASSISTS") / <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games, Gold = <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.lifetimeGold / <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games, Creeps = <>h__TransparentIdentifier29.lifetimeCreeps / <>h__TransparentIdentifier29.<>h__TransparentIdentifier28.<>h__TransparentIdentifier27.games };
+                from TransparentIdentifier29 in collection2
+                select new { ChampionId = TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.TransparentIdentifier25.championId, 
+                    Games = TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games, 
+                    Wins = JsApiService.GetGameStat(TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_SESSIONS_WON"), 
+                    Losses = JsApiService.GetGameStat(TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_SESSIONS_LOST"), 
+                    Kills = JsApiService.GetGameStat(TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_CHAMPION_KILLS") / TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games, 
+                    Deaths = JsApiService.GetGameStat(TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_DEATHS_PER_SESSION") / TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games, 
+                    Assists = JsApiService.GetGameStat(TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.TransparentIdentifier26.stats, "TOTAL_ASSISTS") / TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games, 
+                    Gold = TransparentIdentifier29.TransparentIdentifier28.lifetimeGold / TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games, 
+                    Creeps = TransparentIdentifier29.lifetimeCreeps / TransparentIdentifier29.TransparentIdentifier28.TransparentIdentifier27.games };
             return variable3.ToArray();
         }
 

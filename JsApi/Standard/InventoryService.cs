@@ -90,12 +90,14 @@ namespace WintermintClient.JsApi.Standard
         }
 
         [MicroApiMethod("getChampionGroups")]
+        //Task<object>
         public async Task<object> GetChampionsGroups()
         {
             Task<ChampionGroupPreferences> task = JsApiService.Client.Invoke<ChampionGroupPreferences>("storage.get", "champion-groups");
             Task<InventoryService.JsChampion[]> allChampions = this.GetAllChampions();
             ChampionGroup[] localChampionGroups = this.GetLocalChampionGroups();
             InventoryService.JsChampion[] jsChampionArray = await allChampions;
+            
             IEnumerable<ChampionGroup> championGroups = await task.Groups.Concat<ChampionGroup>(localChampionGroups);
             IEnumerable<InventoryService.JsChampionGroup> jsChampionGroup = 
                 from group in championGroups

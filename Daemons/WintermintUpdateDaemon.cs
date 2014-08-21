@@ -31,14 +31,12 @@ namespace WintermintClient.Daemons
 
         public async Task RunLoop()
         {
-            /*
-            WintermintUpdateDaemon.<RunLoop>d__0 variable = new WintermintUpdateDaemon.<RunLoop>d__0();
-            variable.<>4__this = this;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<WintermintUpdateDaemon.<RunLoop>d__0>(ref variable);
-            return variable.<>t__builder.Task;
-            */
+            WintermintUpdateDaemon.<RunLoop> variable = new WintermintUpdateDaemon.<RunLoop>();
+            variable.this = this;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<WintermintUpdateDaemon.<RunLoop>(ref variable);
+            return variable.builder.Task;
         }
     }
 }

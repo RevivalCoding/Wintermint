@@ -1,39 +1,49 @@
 using FileDatabase;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using WintermintClient.Data.Extensions;
-using WintermintData.Matches;
 
 namespace WintermintClient.Data
 {
-    public class ReplayData
+    internal static class RiotEndpointData
     {
-        private static Dictionary<string, JObject> spectator;
+        private static JObject spectatorEndpoints;
 
-        public ReplayData()
-        {
-        }
-
-        public async Task<Match> GetSpectatorMatchStats(string realmId, long matchId)
-        {
-            await Task.Delay(1000);
-            return new Match();
-        }
-
-        public string GetSpectatorUri(string realmId, string type, params object[] args)
-        {
-            JObject item = ReplayData.spectator[realmId];
-            return string.Format((string)item[type], args);
-        }
+        private static HttpClient http;
 
         public static async Task Initialize(IFileDb fileDb)
         {
-            string stringAsync = await fileDb.GetStringAsync("riot/endpoints/spectator.json");
-            ReplayData.spectator = stringAsync.Deserialize<Dictionary<string, JObject>>().Desensitize<JObject>();
+            string stringAsync = await fileDb.GetStringAsync("data/game/runes.json");
+            RiotEndpointData.spectatorEndpoints = JObject.Parse(stringAsync);
+        }
+
+        private static class Spectate
+        {
+            private static Task<string> GetAsync(string realmId, string type, params object[] args)
+            {
+                string uri = RiotEndpointData.Spectate.GetUri(realmId, type, args);
+                return RiotEndpointData.http.GetStringAsync(uri);
+            }
+
+            public static Task<string> GetMeta(string realmId, long gameId)
+            {
+                object[] objArray = new object[] { gameId };
+                return RiotEndpointData.Spectate.GetAsync(realmId, "meta", objArray);
+            }
+
+            private static string GetUri(string realmId, string type, params object[] args)
+            {
+                string item = (string)RiotEndpointData.spectatorEndpoints[realmId][type];
+                return string.Format(item, args);
+            }
+
+            public static Task<string> GetVersion(string realmId)
+            {
+                return RiotEndpointData.Spectate.GetAsync(realmId, "version", new object[0]);
+            }
         }
     }
 }

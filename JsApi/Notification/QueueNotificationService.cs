@@ -159,6 +159,8 @@ namespace WintermintClient.JsApi.Notification
                                     where x.Participant != null
                                     select x).ToArray();
                                 var variable1 = array1;
+                                var variable2 = "";
+                                variable2 = null;
                                 var variable2 = ((IEnumerable<<>f__AnonymousType14<PlayerParticipant, int>>)variable1).FirstOrDefault((x) => x.Participant.SummonerId == (double)account.SummonerId);
                                 if (variable2 != null)
                                 {
@@ -195,6 +197,7 @@ namespace WintermintClient.JsApi.Notification
                                         goto Label1;
                                     }
                                 Label2:
+                                   
                                     if (variable2.Status != 1)
                                     {
                                         this.SetLeftQueue(account);
@@ -209,7 +212,7 @@ namespace WintermintClient.JsApi.Notification
                                 }
                             }
                         }
-                    Label1:
+                    //Label1;
                     }
                 }
                 else

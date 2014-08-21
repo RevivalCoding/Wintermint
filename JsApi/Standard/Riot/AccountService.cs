@@ -174,15 +174,15 @@ namespace WintermintClient.JsApi.Standard.Riot
         }
 
         [MicroApiMethod("sync")]
-        public async Task SyncAccounts(dynamic args)
+        public void SyncAccounts(dynamic args)
         {
-            AccountService.<SyncAccounts>d__14 variable = new AccountService.<SyncAccounts>d__14();
-            variable.<>4__this = this;
+            AccountService.<SyncAccounts> variable = new AccountService.<SyncAccounts>();
+            variable.this = this;
             variable.args = args;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<AccountService.<SyncAccounts>d__14>(ref variable);
-            return variable.<>t__builder.Task;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<AccountService.<SyncAccounts>d__14>(ref variable);
+            return variable.builder.Task;
         }
 
         [MicroApiMethod("push")]

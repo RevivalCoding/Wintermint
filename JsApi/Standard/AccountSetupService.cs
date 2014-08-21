@@ -25,22 +25,22 @@ namespace WintermintClient.JsApi.Standard
 
         private async Task ImportGameSettings()
         {
-            AccountSetupService.<ImportGameSettings>d__35 variable = new AccountSetupService.<ImportGameSettings>d__35();
-            variable.<>4__this = this;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<AccountSetupService.<ImportGameSettings>d__35>(ref variable);
-            return variable.<>t__builder.Task;
+            AccountSetupService.<ImportGameSettings()> variable = new AccountSetupService.<ImportGameSettings()>();
+            variable.this = this;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<AccountSetupService.<ImportGameSettings>>(ref variable);
+            return variable.builder.Task;
         }
 
         private async Task ImportKeyBindings()
         {
-            AccountSetupService.<ImportKeyBindings>d__32 variable = new AccountSetupService.<ImportKeyBindings>d__32();
-            variable.<>4__this = this;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<AccountSetupService.<ImportKeyBindings>d__32>(ref variable);
-            return variable.<>t__builder.Task;
+            AccountSetupService.<ImportKeyBindings> variable = new AccountSetupService.<ImportKeyBindings>();
+            variable.this = this;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<AccountSetupService.<ImportKeyBindings>>(ref variable);
+            return variable.builder.Task;
         }
 
         private async Task ImportMasteries(RiotAccount account)

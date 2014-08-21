@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
 [assembly: AssemblyCompany("astralfoxy")]
-[assembly: AssemblyCopyright("Copyright © astralfoxy")]
+[assembly: AssemblyCopyright("Copyright © astralfoxy; Rework by eddy")]
 [assembly: AssemblyDescription("It's awesome :)")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyProduct("Wintermint")]

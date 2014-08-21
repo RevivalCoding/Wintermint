@@ -252,8 +252,8 @@ namespace WintermintClient.JsApi.Standard
                         from traderInternalName in potentialTradersDTO.PotentialTraders
                         select new { traderInternalName = traderInternalName, player = allPlayers.First<PlayerParticipant>((PlayerParticipant player) => player.SummonerInternalName == traderInternalName) };
                     push("game:current:trade:targets", 
-                        from <>h__TransparentIdentifier4a in potentialTraders
-                        select <>h__TransparentIdentifier4a.player.SummonerId);
+                        from TransparentIdentifier4a in potentialTraders
+                        select TransparentIdentifier4a.player.SummonerId);
                 }
                 else
                 {

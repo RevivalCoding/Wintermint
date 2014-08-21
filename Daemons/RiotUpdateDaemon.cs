@@ -136,12 +136,12 @@ namespace WintermintClient.Daemons
 
         private async Task RunLoop()
         {
-            RiotUpdateDaemon.<RunLoop>d__1f variable = new RiotUpdateDaemon.<RunLoop>d__1f();
-            variable.<>4__this = this;
-            variable.<>t__builder = AsyncTaskMethodBuilder.Create();
-            variable.<>1__state = -1;
-            variable.<>t__builder.Start<RiotUpdateDaemon.<RunLoop>d__1f>(ref variable);
-            return variable.<>t__builder.Task;
+            RiotUpdateDaemon.<RunLoop> variable = new RiotUpdateDaemon.<RunLoop>();
+            variable.this = this;
+            variable.builder = AsyncTaskMethodBuilder.Create();
+            variable.state = -1;
+            variable.builder.Start<RiotUpdateDaemon.<RunLoop>>(ref variable);
+            return variable.builder.Task;
         }
 
         public Task TryUpdate()
