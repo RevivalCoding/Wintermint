@@ -9,7 +9,8 @@ Work
 
 Will happen soon
 
-LegendaryClient
-===============
+LegacyPVP
+=========
 
 Check out this other custom client. It currently have a higher priority because this is serveral months behinde up to date code
+https://github.com/eddy5641/LegacyPVP
