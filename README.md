@@ -2,6 +2,7 @@ Wintermint
 ==========
 
 League Of Legends Custom Client by AstralFoxy, This is a work in progress, to decompile Wintermint [errors are everywere]
+This is project one of 2. The other project was decompiled with a different decompiler
 
 
 Work
